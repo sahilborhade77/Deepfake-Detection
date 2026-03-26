@@ -1,0 +1,15 @@
+streamlit
+torch
+torchvision
+torchaudio
+numpy
+matplotlib
+pillow
+opencv-python-headless
+timm
+facenet-pytorch
+scikit-learn
+scipy
+librosa
+soundfile
+pandas

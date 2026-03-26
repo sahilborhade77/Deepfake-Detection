@@ -167,7 +167,7 @@ st.markdown("""
 def load_image_model():
     from src.models.image_detector import ImageDetector
     model = ImageDetector()
-    weights = "models/efficientnet_best.pth"
+    weights = "models/image_model.pth"
     if os.path.exists(weights):
         model.load_state_dict(torch.load(weights, map_location="cpu"))
         model.eval()
@@ -180,9 +180,9 @@ def load_fft_analyzer():
 
 @st.cache_resource(show_spinner=False)
 def load_video_model():
-    from src.models.video_detector import DeepfakeVideoDetector
-    model = DeepfakeVideoDetector()
-    weights = "models/video_best.pth"
+    from src.models.video_detector import VideoDetector
+    model = VideoDetector()
+    weights = "models/video_model.pth"
     if os.path.exists(weights):
         model.load_state_dict(torch.load(weights, map_location="cpu"))
         model.eval()
@@ -190,9 +190,9 @@ def load_video_model():
 
 @st.cache_resource(show_spinner=False)
 def load_audio_model():
-    from src.models.audio_detector import DeepfakeAudioDetector
-    model = DeepfakeAudioDetector()
-    weights = "models/audio_best.pth"
+    from src.models.audio_detector import AudioDetector
+    model = AudioDetector()
+    weights = "models/audio_model.pth"
     if os.path.exists(weights):
         model.load_state_dict(torch.load(weights, map_location="cpu"))
         model.eval()
