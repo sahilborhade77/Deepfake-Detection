@@ -224,8 +224,7 @@ def predict_image(model, fft_analyzer, img: Image.Image, tmp_path: str) -> dict:
         cnn_prob = model(tensor).item()
 
     fft_result = fft_analyzer.predict(tmp_path)
-    # Add this right after fft_result = fft_analyzer.predict(tmp_path)
-    st.write(fft_result)  # ← shows all keys, find the right one
+
     fft_prob   = fft_result["fake_prob"]
 
     # Weighted fusion: 65% CNN + 35% FFT
