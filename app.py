@@ -170,7 +170,7 @@ def load_image_model():
     weights = "models/image_model.pth"
     if os.path.exists(weights):
         model.load_state_dict(torch.load(weights, map_location="cpu"))
-        model.eval()
+    model.eval()
     return model
 
 @st.cache_resource(show_spinner=False)
@@ -185,7 +185,7 @@ def load_video_model():
     weights = "models/video_model.pth"
     if os.path.exists(weights):
         model.load_state_dict(torch.load(weights, map_location="cpu"))
-        model.eval()
+    model.eval()
     return model
 
 @st.cache_resource(show_spinner=False)
@@ -195,7 +195,7 @@ def load_audio_model():
     weights = "models/audio_model.pth"
     if os.path.exists(weights):
         model.load_state_dict(torch.load(weights, map_location="cpu"))
-        model.eval()
+    model.eval()
     return model
 
 @st.cache_resource(show_spinner=False)

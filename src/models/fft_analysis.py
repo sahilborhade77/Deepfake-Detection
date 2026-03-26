@@ -166,17 +166,14 @@ class FFTClassifier(nn.Module):
         super().__init__()
         self.net = nn.Sequential(
             nn.Linear(input_dim, 256),
-            nn.BatchNorm1d(256),
             nn.ReLU(),
             nn.Dropout(dropout),
 
             nn.Linear(256, 128),
-            nn.BatchNorm1d(128),
             nn.ReLU(),
             nn.Dropout(dropout),
 
             nn.Linear(128, 64),
-            nn.BatchNorm1d(64),
             nn.ReLU(),
             nn.Dropout(dropout * 0.5),
 
@@ -353,10 +350,11 @@ class FFTAnalyzer:
 
         if model_path and os.path.exists(model_path):
             self.model.load_state_dict(torch.load(model_path, map_location=self.device))
-            self.model.eval()
             print(f"FFT model loaded from {model_path}")
         else:
-            print("Warning: No model path provided. FFTAnalyzer running without trained weights.")
+            print("Warning: No model path provided or file missing. Using untrained weights.")
+
+        self.model.eval()  # ALWAYS call eval() for inference
 
     def extract_features(self, image_path: str) -> np.ndarray:
         """Returns raw 512-dim FFT feature vector."""
