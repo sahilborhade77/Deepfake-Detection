@@ -1,0 +1,180 @@
+# 🎭 Deepfake Detection System
+
+A multi-modal deepfake detection pipeline using deep learning for visual, temporal, and audio analysis of manipulated media.
+
+![Python](https://img.shields.io/badge/Python-3.10-blue?style=flat&logo=python)
+![PyTorch](https://img.shields.io/badge/PyTorch-2.x-red?style=flat&logo=pytorch)
+![License](https://img.shields.io/badge/License-MIT-green?style=flat)
+![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=flat)
+
+---
+
+## 📌 Overview
+
+This project implements a **7-stage deepfake detection pipeline** that combines visual, spatiotemporal, and audio analysis to identify AI-generated or manipulated media. The system is designed to handle both image-based and video-based deepfakes with explainable AI output using Grad-CAM.
+
+---
+
+## 🧠 Architecture
+
+```
+Input Media
+    │
+    ▼
+[Stage 1] Face Detection        →  MTCNN
+    │
+    ▼
+[Stage 2] Visual Analysis       →  XceptionNet / EfficientNet (CNN)
+    │
+    ▼
+[Stage 3] Temporal Analysis     →  LSTM (frame-level consistency)
+    │
+    ▼
+[Stage 4] Audio Analysis        →  RawNet2
+    │
+    ▼
+[Stage 5] Multimodal Fusion     →  Cross-modal verification
+    │
+    ▼
+[Stage 6] Explainability        →  Grad-CAM heatmap generation
+    │
+    ▼
+[Stage 7] Output                →  Streamlit dashboard (Real / Fake + confidence)
+```
+
+---
+
+## ✨ Features
+
+- **Face Detection** — MTCNN-based face extraction from video frames
+- **Visual Deepfake Detection** — XceptionNet and EfficientNet for spatial artifact detection
+- **Temporal Consistency Check** — LSTM to detect frame-level inconsistencies over time
+- **Audio Deepfake Detection** — RawNet2 for voice synthesis detection
+- **Explainability** — Grad-CAM heatmaps showing *why* a video is flagged as fake
+- **Interactive UI** — Streamlit-based dashboard for real-time analysis
+- **Multi-approach coverage** — GAN, VAE, and Diffusion-based deepfake detection
+
+---
+
+## 🛠 Tech Stack
+
+| Component | Technology |
+|---|---|
+| Framework | PyTorch |
+| Face Detection | MTCNN |
+| Visual Model | XceptionNet, EfficientNet |
+| Temporal Model | LSTM |
+| Audio Model | RawNet2 |
+| Explainability | Grad-CAM |
+| UI | Streamlit |
+| Language | Python 3.10 |
+
+---
+
+## 📁 Project Structure
+
+```
+Deepfake-Detection/
+├── data/
+│   ├── raw/                  # Input videos/images
+│   └── processed/            # Preprocessed face crops
+├── models/
+│   ├── visual/               # XceptionNet, EfficientNet weights
+│   ├── temporal/             # LSTM model
+│   └── audio/                # RawNet2 model
+├── pipeline/
+│   ├── face_detection.py     # MTCNN face extraction
+│   ├── visual_analysis.py    # CNN-based detection
+│   ├── temporal_analysis.py  # LSTM consistency check
+│   ├── audio_analysis.py     # RawNet2 audio detection
+│   └── fusion.py             # Multimodal fusion
+├── explainability/
+│   └── gradcam.py            # Grad-CAM heatmaps
+├── app.py                    # Streamlit dashboard
+├── requirements.txt
+└── README.md
+```
+
+---
+
+## ⚙️ Setup & Installation
+
+### Prerequisites
+- Python 3.10+
+- CUDA-compatible GPU (tested on RTX 2050, 8GB RAM)
+- Git
+
+### Install Dependencies
+
+```bash
+git clone https://github.com/sahilborhade77/Deepfake-Detection.git
+cd Deepfake-Detection
+pip install -r requirements.txt
+```
+
+### Run the App
+
+```bash
+streamlit run app.py
+```
+
+---
+
+## 🚀 Usage
+
+1. Launch the Streamlit dashboard
+2. Upload a video or image file
+3. Click **Analyze**
+4. View the prediction (Real / Fake), confidence score, and Grad-CAM heatmap
+
+---
+
+## 📊 Detection Approaches Covered
+
+| Deepfake Type | Detection Method |
+|---|---|
+| GAN-based (FaceSwap, DeepFaceLab) | XceptionNet spatial artifact detection |
+| VAE-based | EfficientNet feature analysis |
+| Diffusion-based | Temporal + frequency analysis |
+| Voice cloning | RawNet2 audio model |
+| Lip-sync fakes | Cross-modal audio-visual fusion |
+
+---
+
+## 🔍 Explainability — Grad-CAM
+
+The system generates **Grad-CAM heatmaps** that highlight which facial regions contributed most to the fake classification — making the model's decision transparent and interpretable.
+
+---
+
+## 📚 Literature Survey
+
+This project is backed by a comprehensive literature survey covering:
+- GAN/VAE/Diffusion-based generation techniques
+- CNN and Vision Transformer (ViT) detection approaches
+- Spatiotemporal and multimodal detection methods
+- Audio deepfake detection
+
+---
+
+## 🧩 Hardware Constraints
+
+This project is optimized for resource-constrained setups:
+- **GPU**: NVIDIA RTX 2050 (4GB VRAM)
+- **RAM**: 8GB
+- Lightweight model variants used where needed
+
+---
+
+## 🤝 Contributing
+
+Pull requests are welcome! For major changes, please open an issue first to discuss what you'd like to change.
+
+---
+
+
+## 👤 Author
+
+**Sahil Borhade**  
+AI & ML Engineering Student, SPPU Pune  
+[LinkedIn](https://www.linkedin.com/in/sahil-borhade-ai/) • [GitHub](https://github.com/sahilborhade77)
